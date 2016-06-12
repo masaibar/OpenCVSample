@@ -4,9 +4,9 @@ import numpy as np
 from pprint import pprint
 
 # image_path = "images/lena.png"
-IMAGE_PATH = "images/kojiruri.png"
+# IMAGE_PATH = "images/kojiruri.png"
 # IMAGE_PATH = "images/picture.jpg"
-# IMAGE_PATH = "images/picture2.jpg"
+IMAGE_PATH = "images/picture2.jpg"
 CASCADE_PATH = "haarcascades/haarcascade_frontalface_alt.xml"
 
 def detect_faces(image):
@@ -44,7 +44,7 @@ def main():
 
     cv2.imshow("result", result)
     # cv2.imshow("original", image)
-    cv2.waitKey(0)
+    cv2.waitKey(5000)
 
 if __name__ == "__main__":
     main()
