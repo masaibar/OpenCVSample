@@ -1,12 +1,11 @@
 import cv2
 
 # image_path = "images/lena.png"
-image_path = "images/2girls.png"
 image_path = "images/kojiruri.png"
 image = cv2.imread(image_path);
 image_gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
-cascade_path = "haarcascades/haarcascade_frontalface_alt_tree.xml"
+cascade_path = "haarcascades/haarcascade_frontalface_alt.xml"
 
 cascade = cv2.CascadeClassifier(cascade_path)
 
