@@ -15,9 +15,9 @@ class PolkaDotsCollage:
     def detect_faces(self):
         CASCADE_PATH = "haarcascades/haarcascade_frontalface_alt.xml"
 
-        image_gray = cv2.cvtColor(self.image, cv2.COLOR_BGR2GRAY)
+        gray_image = cv2.cvtColor(self.image, cv2.COLOR_BGR2GRAY)
         cascade = cv2.CascadeClassifier(CASCADE_PATH)
-        self.faces = cascade.detectMultiScale(image_gray, scaleFactor=1.1, minNeighbors=1, minSize=(1, 1))
+        self.faces = cascade.detectMultiScale(gray_image, scaleFactor=1.1, minNeighbors=1, minSize=(1, 1))
 
     def detect_swimsuit(self):
         swimsuit = cv2.inRange(cv2.cvtColor(self.image, cv2.COLOR_BGR2HSV), np.array([0, 180, 8]), np.array([360, 255, 247]))
