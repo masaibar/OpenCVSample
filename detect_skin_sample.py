@@ -16,17 +16,6 @@ def detect_faces(image):
     cascade = cv2.CascadeClassifier(CASCADE_PATH)
     return cascade.detectMultiScale(gray_image, scaleFactor=1.1, minNeighbors=1, minSize=(70, 70))
 
-def detect_skin_mask(image, faces):
-    if len(faces) == 0:
-        raise Exception("No face")
-
-    mask = np.zeros(image.shape[:2], np.uint8)
-
-    # mask = np.bool_(mask)
-    hsv_image = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
-
-    return mask
-
 def detect_skin_area(image, skin_areas):
     hsv_image = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
     lowerb = np.array([3, 30, 0], np.uint8)
@@ -48,9 +37,6 @@ def main():
 
     skin_areas = []
     result = detect_skin_area(image, skin_areas)
-
-    # mask = detect_skin_mask(image, faces)
-    # result = cv2.bitwise_and(image, image, mask=mask)
 
     cv2.imshow("result", result)
     # cv2.imshow("original", image)
