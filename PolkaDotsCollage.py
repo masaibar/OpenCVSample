@@ -17,7 +17,7 @@ class PolkaDotsCollage:
 
         gray_image = cv2.cvtColor(self.image, cv2.COLOR_BGR2GRAY)
         cascade = cv2.CascadeClassifier(CASCADE_PATH)
-        self.faces = cascade.detectMultiScale(gray_image, scaleFactor=1.1, minNeighbors=1, minSize=(1, 1))
+        self.faces = cascade.detectMultiScale(gray_image, scaleFactor=1.1, minNeighbors=1, minSize=(70, 70)) #変な顔判定されぬよう 比較してもいいかもね
 
     def detect_swimsuit(self):
         swimsuit = cv2.inRange(cv2.cvtColor(self.image, cv2.COLOR_BGR2HSV), np.array([0, 180, 8]), np.array([360, 255, 247]))
@@ -28,8 +28,10 @@ class PolkaDotsCollage:
         print(contours)
 
         for contour in contours:
-            if contour.size > 25:
-                self.swimsuit_areas.append(contour)
+            if contour.size < 25:
+                continue
+
+            self.swimsuit_areas.append(contour)
 
     def create_polka_dot(self):
         for x, y, w, h in self.faces:
@@ -44,10 +46,8 @@ class PolkaDotsCollage:
         height, width = self.image.shape[:2]
         print("[Size] Height = %d, Width = %d" % (height, width))
 
-        # maskをかける
         mask = np.zeros((height, width), np.uint8)
 
-        # 水玉模様になる園の定義
         for polka_dot in self.polka_dots:
             print(polka_dot.get_center())
             print(polka_dot.get_radius())

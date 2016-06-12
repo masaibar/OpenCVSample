@@ -10,6 +10,5 @@ def main():
     mizutama = PolkaDotsCollage(IMAGE_PATH)
     mizutama.exec()
 
-
 if __name__ == "__main__":
     main()
